@@ -186,17 +186,7 @@ class Firebreath(pygame.sprite.Sprite):
     def update(self):
         self.rect.y+=self.speedy
         if self.rect.bottom<0:
-            self.kill()
-all_sprite=pygame.sprite.Group()
-enemys=pygame.sprite.Group()
-fireballs=pygame.sprite.Group()
-firebreaths=pygame.sprite.Group()
-player=Player()
-powers=pygame.sprite.Group()
-all_sprite.add(player)
-score=0
-for i in range(10 ):#敵人數量
-    new_enemy()            
+            self.kill()          
 
 power_imgs={}
 power_imgs["breath"]=pygame.image.load(os.path.join("img","breath.png")).convert()
@@ -260,7 +250,7 @@ while running:
         player.health-=33
         if player.health<=0:
             show_init=True
-    #寶物，人物相撞
+    #道具，人物相撞
     hits=pygame.sprite.spritecollide(player,powers,True,)
     for hit in hits:
         if hit.type=="heart":
