@@ -228,6 +228,7 @@ while running:
        
     #更新遊戲
     all_sprite.update()
+    #火球與敵人撞擊
     hits=pygame.sprite.groupcollide(enemys,fireballs,True,True)#碰撞判定
     for hit in hits:
         score+=1
@@ -236,6 +237,7 @@ while running:
             all_sprite.add(pow)
             powers.add(pow)
         new_enemy()
+    #火焰吐息與敵人撞擊
     hits=pygame.sprite.groupcollide(enemys,firebreaths,True,False)
     for hit in hits:
         score+=1
@@ -244,13 +246,14 @@ while running:
             all_sprite.add(pow)
             powers.add(pow)
         new_enemy()
-    hits=pygame.sprite.spritecollide(player,enemys,True,pygame.sprite.collide_circle)  #人物撞擊死亡
+    #玩家與敵人撞擊
+    hits=pygame.sprite.spritecollide(player,enemys,True,pygame.sprite.collide_circle) 
     for hit in hits:
         new_enemy()
         player.health-=33
         if player.health<=0:
             show_init=True
-    #道具，人物相撞
+    #道具，玩家相撞
     hits=pygame.sprite.spritecollide(player,powers,True,)
     for hit in hits:
         if hit.type=="heart":
